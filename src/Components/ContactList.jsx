@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import ContactCard from "./ContactCard";
 import { useValue } from "../Context/UsersContext";
 import UserService from "../services/UserService";
+import AddContactForm from "./AddContactForm";
 
 function ContactList() {
   let {
@@ -13,6 +14,8 @@ function ContactList() {
     setUserToUpdate,
     setUpdateNameInput,
     setUpdateEmailInput,
+    showAddContact,
+    setShowAddContact,
   } = useValue();
 
   // use effect to populate the contact list at startup
@@ -67,10 +70,24 @@ function ContactList() {
   };
 
   return (
-    <div className="mt-10 p-4 w-[500px] mx-auto bg-slate-300">
-      {/* Contact List */}
+    <div className="mt-10 p-4 w-[500px] mx-auto flex flex-col items-start justify-center gap-4 border-2 rounded-md shadow-2xl">
+      {/* add contact button and show add contact form */}
+      <div className="w-full flex items-center justify-between">
+        <span className="text-lg">Contacts</span>
+        {/* Add Contact button */}
+        <button
+          className="px-2 py-1 bg-blue-400 rounded"
+          onClick={() => setShowAddContact(!showAddContact)}
+        >
+          {showAddContact ? "Cancel" : "Add Contact"}
+        </button>
+      </div>
+
+      {/* Add Contact Form */}
+      {showAddContact && <AddContactForm />}
+
+      {/* contact list */}
       <div className="contactlist w-full flex flex-col gap-4 items-center justify-center">
-        {/* mapping of contact cards here */}
         {users.map((user) => (
           <ContactCard
             key={user.id}

@@ -4,15 +4,8 @@ import { v4 as uuidv4 } from "uuid";
 import UserService from "../services/UserService";
 
 function AddContactForm() {
-  const {
-    setUsers,
-    showAddContact,
-    setShowAddContact,
-    nameInput,
-    setNameInput,
-    emailInput,
-    setEmailInput,
-  } = useValue();
+  const { setUsers, nameInput, setNameInput, emailInput, setEmailInput } =
+    useValue();
 
   // function to add new user
   const addNewUser = async (e) => {
@@ -37,14 +30,14 @@ function AddContactForm() {
   };
 
   return (
-    <div className="AddContactForm w-[350px] p-4 bg-slate-300 flex flex-col items-start justify-center gap-4">
-      <span>Fill contact details</span>
+    <div className="AddContactForm w-full px-4 py-5 bg-slate-300 flex flex-col items-start justify-center gap-4 rounded-md z-10 shadow-lg">
+      <span className="text-xl">Add new contact</span>
       <form
         onSubmit={addNewUser}
         className="flex flex-col items-start justify-center gap-3 w-full"
       >
         <input
-          className="p-2 w-full"
+          className="p-2 w-full rounded"
           type="text"
           required
           placeholder="Name..."
@@ -52,7 +45,7 @@ function AddContactForm() {
           onChange={(e) => setNameInput(e.target.value)}
         />
         <input
-          className="p-2 w-full"
+          className="p-2 w-full rounded"
           type="email"
           required
           placeholder="Email..."
@@ -60,14 +53,8 @@ function AddContactForm() {
           onChange={(e) => setEmailInput(e.target.value)}
         />
         <div className="flex items-center justify-center gap-2">
-          <button className="bg-green-400 p-1" type="submit">
+          <button className="bg-green-400 px-2 py-1" type="submit">
             Add Contact
-          </button>
-          <button
-            onClick={() => setShowAddContact(!showAddContact)}
-            className="bg-blue-400 p-1"
-          >
-            Cancel
           </button>
         </div>
       </form>

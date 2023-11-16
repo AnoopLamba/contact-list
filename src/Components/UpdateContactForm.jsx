@@ -1,6 +1,7 @@
 import { toast } from "react-toastify";
 import { useValue } from "../Context/UsersContext";
 import UserService from "../services/UserService";
+import { useEffect } from "react";
 
 function UpdateContactForm() {
   const {
@@ -14,6 +15,20 @@ function UpdateContactForm() {
     updateEmailInput,
     setUpdateEmailInput,
   } = useValue();
+
+  // Disable scroll when the form is visible
+  useEffect(() => {
+    if (showUpdateContact) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+
+    // Cleanup effect
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [showUpdateContact]);
 
   //function to update user details
   const updateUserDetails = async (e) => {
@@ -45,38 +60,40 @@ function UpdateContactForm() {
   };
 
   return (
-    <div className="AddContactForm w-[350px] p-4 bg-slate-300 flex flex-col items-start justify-center gap-4">
-      <span>Edit contact details</span>
-      <form
-        onSubmit={updateUserDetails}
-        className="flex flex-col items-start justify-center gap-3 w-full"
-      >
-        <input
-          className="p-2 w-full"
-          type="text"
-          value={updateNameInput}
-          onChange={(e) => setUpdateNameInput(e.target.value)}
-          required
-        />
-        <input
-          className="p-2 w-full"
-          type="email"
-          value={updateEmailInput}
-          onChange={(e) => setUpdateEmailInput(e.target.value)}
-          required
-        />
-        <div className="flex items-center justify-center gap-2">
-          <button className="bg-green-400 p-1" type="submit">
-            Edit Contact
-          </button>
-          <button
-            onClick={() => setShowUpdateContact(!showUpdateContact)}
-            className="bg-blue-400 p-1"
-          >
-            Cancel
-          </button>
-        </div>
-      </form>
+    <div className="flex items-center justify-center fixed z-10 inset-0 bg-black bg-opacity-50 backdrop-blur-sm">
+      <div className="AddContactForm w-[465px] p-4 bg-slate-300 flex flex-col items-start justify-center gap-4 rounded-md shadow-2xl">
+        <span className=" text-xl">Edit contact</span>
+        <form
+          onSubmit={updateUserDetails}
+          className="flex flex-col items-start justify-center gap-3 w-full"
+        >
+          <input
+            className="p-2 w-full rounded"
+            type="text"
+            value={updateNameInput}
+            onChange={(e) => setUpdateNameInput(e.target.value)}
+            required
+          />
+          <input
+            className="p-2 w-full rounded"
+            type="email"
+            value={updateEmailInput}
+            onChange={(e) => setUpdateEmailInput(e.target.value)}
+            required
+          />
+          <div className="flex items-center justify-center gap-2">
+            <button className="bg-green-400 px-2 py-1" type="submit">
+              Edit Contact
+            </button>
+            <button
+              onClick={() => setShowUpdateContact(!showUpdateContact)}
+              className="bg-blue-400 px-2 py-1"
+            >
+              Cancel
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 }
