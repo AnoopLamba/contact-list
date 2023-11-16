@@ -1,23 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import { useValue } from "./Context/UsersContext";
+import ContactList from "./Components/ContactList";
+import AddContactForm from "./Components/AddContactForm";
+import UpdateContactForm from "./Components/UpdateContactForm";
 
 function App() {
+  const { showAddContact, setShowAddContact, showUpdateContact } = useValue();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <div className="App flex flex-col items-center mt-8 mb-8">
+      {/* Add Contact button */}
+      {showAddContact ? null : (
+        <button
+          className="p-1 bg-blue-400"
+          onClick={() => setShowAddContact(!showAddContact)}
         >
-          Learn React
-        </a>
-      </header>
+          Add Contact
+        </button>
+      )}
+
+      {/* Add Contact Form */}
+      {showAddContact && <AddContactForm />}
+
+      {/* Update Contact Form */}
+      {showUpdateContact && <UpdateContactForm />}
+
+      {/* Contact List */}
+      <ContactList />
     </div>
   );
 }
