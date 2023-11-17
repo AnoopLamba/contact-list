@@ -82,12 +82,15 @@ function UpdateContactForm() {
             required
           />
           <div className="flex items-center justify-center gap-2">
-            <button className="bg-green-400 px-2 py-1" type="submit">
+            <button
+              className="bg-green-400 px-2 py-1 hover:bg-opacity-75"
+              type="submit"
+            >
               Edit Contact
             </button>
             <button
               onClick={() => setShowUpdateContact(!showUpdateContact)}
-              className="bg-blue-400 px-2 py-1"
+              className="bg-blue-400 px-2 py-1 hover:bg-opacity-75"
             >
               Cancel
             </button>

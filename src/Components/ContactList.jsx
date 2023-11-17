@@ -70,13 +70,13 @@ function ContactList() {
   };
 
   return (
-    <div className="mt-10 p-4 w-[500px] mx-auto flex flex-col items-start justify-center gap-4 border-2 rounded-md shadow-2xl">
+    <div className="mt-10 p-4 w-[500px] mx-auto flex flex-col items-start justify-center gap-4 border-2 rounded-md">
       {/* add contact button and show add contact form */}
       <div className="w-full flex items-center justify-between">
         <span className="text-lg">Contacts</span>
         {/* Add Contact button */}
         <button
-          className="px-2 py-1 bg-blue-400 rounded"
+          className="px-2 py-1 bg-blue-400 rounded shadow-xl hover:bg-opacity-75"
           onClick={() => setShowAddContact(!showAddContact)}
         >
           {showAddContact ? "Cancel" : "Add Contact"}

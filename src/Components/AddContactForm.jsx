@@ -30,7 +30,7 @@ function AddContactForm() {
   };
 
   return (
-    <div className="AddContactForm w-full px-4 py-5 bg-slate-300 flex flex-col items-start justify-center gap-4 rounded-md z-10 shadow-lg">
+    <div className="AddContactForm w-full px-4 py-5 bg-slate-300 flex flex-col items-start justify-center gap-4 rounded-md shadow-lg">
       <span className="text-xl">Add new contact</span>
       <form
         onSubmit={addNewUser}
@@ -53,7 +53,10 @@ function AddContactForm() {
           onChange={(e) => setEmailInput(e.target.value)}
         />
         <div className="flex items-center justify-center gap-2">
-          <button className="bg-green-400 px-2 py-1" type="submit">
+          <button
+            className="bg-green-400 px-2 py-1 hover:bg-opacity-75"
+            type="submit"
+          >
             Add Contact
           </button>
         </div>

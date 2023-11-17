@@ -13,13 +13,13 @@ function ContactCard(props) {
       <div className=" flex gap-1 items-center justify-center">
         <button
           onClick={() => updateUser(user)}
-          className="bg-green-400 px-2 py-1"
+          className="bg-green-400 px-2 py-1 hover:bg-opacity-75"
         >
           Edit
         </button>
         <button
           onClick={() => deleteUser(user)}
-          className="bg-red-400 px-2 py-1"
+          className="bg-red-400 px-2 py-1 hover:bg-opacity-75"
         >
           Delete
         </button>
